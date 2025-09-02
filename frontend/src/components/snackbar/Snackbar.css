@@ -1,0 +1,180 @@
+/* Snackbar Component Styles */
+.snackbar {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  min-width: 300px;
+  max-width: 500px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateX(100%);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+}
+
+.snackbar.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.snackbar.hide {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.snackbar-content {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  gap: 12px;
+}
+
+.snackbar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.snackbar-message {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.snackbar-close {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  font-size: 16px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+  flex-shrink: 0;
+}
+
+.snackbar-close:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Success Snackbar */
+.snackbar.success {
+  background: rgba(16, 185, 129, 0.95);
+  color: white;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.snackbar.success .snackbar-icon {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+/* Error Snackbar */
+.snackbar.error {
+  background: rgba(239, 68, 68, 0.95);
+  color: white;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.snackbar.error .snackbar-icon {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+/* Warning Snackbar */
+.snackbar.warning {
+  background: rgba(245, 158, 11, 0.95);
+  color: white;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.snackbar.warning .snackbar-icon {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+/* Info Snackbar */
+.snackbar.info {
+  background: rgba(59, 130, 246, 0.95);
+  color: white;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.snackbar.info .snackbar-icon {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .snackbar {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    min-width: auto;
+    max-width: none;
+  }
+  
+  .snackbar-content {
+    padding: 14px 16px;
+    gap: 10px;
+  }
+  
+  .snackbar-message {
+    font-size: 13px;
+  }
+  
+  .snackbar-icon {
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .snackbar {
+    top: 5px;
+    right: 5px;
+    left: 5px;
+  }
+  
+  .snackbar-content {
+    padding: 12px 14px;
+    gap: 8px;
+  }
+  
+  .snackbar-message {
+    font-size: 12px;
+  }
+}
+
+/* Animation for multiple snackbars */
+.snackbar:nth-child(2) {
+  top: 80px;
+}
+
+.snackbar:nth-child(3) {
+  top: 140px;
+}
+
+.snackbar:nth-child(4) {
+  top: 200px;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .snackbar {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+}

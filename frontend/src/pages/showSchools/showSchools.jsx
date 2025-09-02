@@ -1,0 +1,75 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import PageHeader from "../../components/pageHeader/PageHeader";
+import "./showSchools.css";
+import school1Image from "../../images/school1.jpeg";
+import school2Image from "../../images/school2.jpeg";
+import SchoolStackIcon from "../../assets/icons/school-stack.svg";
+import PlusIcon from "../../assets/icons/plus.svg";
+
+export default function ShowSchoolsPage() {
+  const [schools, setSchools] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    try {
+      // const { data } = axios.get("http://localhost:4000/getSchools");
+      let data = [];
+      setSchools(data);
+    } catch (e) {
+      setSchools([]);
+    }
+  }, []);
+
+  return (
+    <div className="show-schools-container">
+      <PageHeader 
+        title="Schools"
+        buttonText="+ Add School"
+        onButtonClick={() => navigate("/add")}
+        buttonClassName="action-btn"
+      />
+
+      {schools.length === 0 ? (
+        <div className="no-schools">
+          <div className="empty-state">
+            <div className="empty-icon">
+              <img src={SchoolStackIcon} alt="School Stack" />
+            </div>
+            <h2 className="empty-title">No Schools Found</h2>
+            <p className="empty-description">
+              It looks like you haven't added any schools yet. 
+              <br />
+              Get started by adding your first school to the system.
+            </p>
+            <button 
+              className="empty-action-btn" 
+              onClick={() => navigate("/add")}
+            >
+              <img src={PlusIcon} alt="Plus" />
+              Add Your First School
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className="schools-grid">
+          {schools.map((s) => (
+            <div key={s.id} className="school-card">
+              {s.image && (
+                <div className="image-container">
+                  <img src={s.image} alt={s.name} />
+                </div>
+              )}
+              <div className="card-content">
+                <h3>{s.name}</h3>
+                <p className="address">{s.address}</p>
+                <p className="city">{s.city}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
