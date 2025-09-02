@@ -3,12 +3,10 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import PageHeader from "../../components/pageHeader/PageHeader";
-import { useSnackbarContext } from "../../components/snackbar/SnackbarProvider";
 import "./addSchool.css";
 
 export default function AddSchoolPage() {
   const navigate = useNavigate();
-  const { showSuccess, showError } = useSnackbarContext();
   const {
     register,
     handleSubmit,
@@ -46,11 +44,9 @@ export default function AddSchoolPage() {
       await axios.post("http://localhost:4000/addSchool", formData, { headers: { "Content-Type": "multipart/form-data" } });
       reset();
       setPreviewUrl("");
-      showSuccess("School has been added successfully!");
       navigate("/schools");
     } catch (err) {
       console.log(err);
-      showError("Failed to save school. Ensure backend is running.");
     }
   };
 
